@@ -18,6 +18,7 @@ const HTTP_PORT = 3000;
 
 app.use(express.static('public'));
 
+
 const main = async() =>{
     await projectData.Initialize();
 

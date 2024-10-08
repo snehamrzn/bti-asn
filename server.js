@@ -16,7 +16,7 @@ const path = require("path");
 const app = express();
 const HTTP_PORT = 3000;
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '/public')));
 
 
 const main = async() =>{

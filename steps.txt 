@@ -1,0 +1,18 @@
+- git init (initialize git repo)
+
+- git add . (stages all the changes)
+or
+- git add something.html something1.css (manually stage files)
+
+- git status (check if the change are staged)
+
+- git commit -m "your message" (commits the changes, with a message)
+
+(if first time commiting to repo)
+- git branch -M main
+- git remote add origin https://github.com/snehamrzn/bti-asn-3.git
+- git push -u origin main
+
+or
+
+- git push

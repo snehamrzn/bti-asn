@@ -65,7 +65,7 @@ function getProjectBySector(sector)
     return new Promise((resolve, reject) =>
     {
          let objSector = projects.filter((project) => project.sector.toLowerCase().includes(sector.toLowerCase()));
-         if(objSector)
+         if(objSector.length > 0)
          {
              resolve(objSector) ;
          } else{

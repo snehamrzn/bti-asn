@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= project.title %></title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>Climate Solutions</title>
+</head>
+<body class="min-h-screen">
+  <%- include('partials/navbar', {page: '/about'}) %>
+      <div class="container mx-auto p-4">
+      <div class="hero bg-base-200 min-h-32 rounded-lg p-10">
+        <div class="hero-content text-center">
+          <div class="max-w-lg">
+            <h1 class="text-5xl font-bold"><%= project.title %></h1>
+            <p class="py-6">
+                Below, you will find detailed information about the project: <%= project.title %>
+            </p>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 m-10">
+            <div>
+                <img class="w-full rounded-lg" src= <%= project.feature_img_url %>  />
+            </div>
+            <div>
+                <p><%= project.intro_short %></p><br>
+                <p><strong>Impact:</strong></p><br>
+                <p><%= project.impact%> </p><br>
+                <p>More Information: <a href = <%= project.original_source_url %> </a><u><%= project.original_source_url %></u></p>
+                <br>
+                
+                <p id ="quote"></p>
+                <em><p id = "author"></p></em>
+                <br>
+
+            
+                <a class="btn btn-primary btn-sm" href="#" onclick="history.back(); return false;">Return</a>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", async()=>{
+
+                             const quotes = await fetch("https://dummyjson.com/quotes/random");
+                             const data = await quotes.json();
+     
+                             document.getElementById("quote").textContent =`"${data.quote}"`;
+                             document.getElementById("author").textContent =`- ${data.author}`;
+                    });
+                </script>
+                
+            </div>
+
+        </div>
+      </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>Projects</title>
+</head>
+<body class="min-h-screen">
+  <%- include('partials/navbar', {page: '/solutions/projects'}) %>
+      <div class="container mx-auto">
+      <div class="hero bg-base-200 min-h-32 rounded-lg p-10">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold">Projects</h1>
+            <p class="py-6">
+                Browse the current list of Projects in our database. Click the theme to filter by sectors such as:
+               <div>
+                  <a class="btn btn-primary btn-xs" href ="/solutions/projects?sector=ind">Industry</a>
+                  <a class="btn btn-primary btn-xs" href ="/solutions/projects?sector=Transportation">Transportation</a>
+                  <a class="btn btn-primary btn-xs" href ="/solutions/projects?sector=Electricity">Electricity</a>
+               </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+      <div class="container mx-auto">
+        <table class="table table-zebra">
+          <tbody>
+            <% projects.forEach(project => { %>
+              <tr>
+                <td><%= project.title %></td>
+                <td>
+                  <a class = "btn btn-xs"href="/solutions/projects?sector=<%= project.sector %>">
+                      <%= project.sector %>
+                  </a>
+              </td>
+                <td> <%= project.summary_short%></td>
+                <td>
+                  <a class ="btn btn-xs" href="/solutions/projects/<%= project.id %>">details</a>
+              </td>
+              </tr>
+            <%}); %>
+          </tbody>
+        </table>
+    
+      </div>
+
+     
+
+</body>
+</html>

@@ -8,6 +8,7 @@
 *
 * Name: _Sneha Maharjan_ Student ID: ___170814222____ Date: ___2024-10-8____
 *
+* Published url- bti-asn-3.vercel.app
 ********************************************************************************/
 const projectData = require("./modules/projects");
 const express = require('express');
@@ -18,6 +19,9 @@ const HTTP_PORT = 3000;
 
 app.use(express.static(path.join(__dirname, '/public')));
 
+app.set('view engine', 'ejs');
+
+app.set('views', __dirname + '/views');
 
 const main = async() =>{
     await projectData.Initialize();
@@ -28,34 +32,41 @@ const main = async() =>{
     app.get('/',(req, res) => {
             // res.send('Assignment2:Student Name - Sneha Maharjan Student ID - 170814222');
 
-            res.sendFile(path.join(__dirname, "/views/home.html"))
+            res.render("home");
     });
 
     app.get('/about', (req, res) => {
-        res.sendFile(path.join(__dirname, "/views/about.html"));
+        res.render("about");
     })
    
 // 
 
     app.get('/solutions/projects',async(req,res)=>{
+        const sector = req.query.sector; 
        try{
-            const sector = req.query.sector; // query filter params
+            // query filter params
+            
             if(sector) {
-                res.send(await projectData.getProjectBySector(sector));
+                let sectors = await projectData.getProjectBySector(sector);
+                // res.send(sectors);
+                res.render("projects", {projects: sectors});
             } else {
-                res.send(await projectData.getAllProject()); 
+                let project = await projectData.getAllProject();
+                //res.send(await projectData.getAllProject());
+                res.render("projects", {projects: project});
             }
        }catch(error){
-            res.status(404).sendFile(path.join(__dirname, "/views/404.html"));
+        res.status(404).render("404", {message: `No projects found for the sector: ${sector}`});
        }
     });
 
     app.get('/solutions/projects/:id', async(req,res) =>{
         try{
             const id = parseInt(req.params.id); // returns a string, parsing to int
-            res.send(await projectData.getProjectById(id));
+            let projectId = await projectData.getProjectById(id);
+            res.render("project", {project: projectId});
         }catch(error){
-            res.send(error);
+            res.status(404).render("404", { message: "Unable to find requested project."});
         }
 
 
@@ -64,7 +75,8 @@ const main = async() =>{
     // Other route handlers, middleware, etc ...
 
     app.use((req, res, next) => {
-        res.status(404).sendFile(path.join(__dirname, "/views/404.html")); 
+        // res.status(404).render("404"); 
+        res.status(404).render("404", {message: "I'm sorry, we're unable to find what you're looking for"});
     });
   
   // app.listen()

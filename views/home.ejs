@@ -7,34 +7,8 @@
     <title>Climate Solutions</title>
 </head>
 <body class="min-h-screen">
-    <div class="navbar bg-base-100">
-        <div class="flex-1">
-          <!-- <a class="btn btn-ghost normal-case text-xl" href="/">Climate Solutions</a> -->
-          <a class="btn btn-ghost normal-case text-xl" href="/">Climate Solutions</a>
-        </div>
-      
-        <div class="navbar-center flex">
-          <ul class="menu menu-horizontal px-1">
-            <li><a href="/about">About</a></li>
-            <li>
-              <details>
-                <summary>Sector</summary>
-                <ul class="p-2 bg-base-100 right-0">
-                   <li> 
-                        <a href="/solutions/projects?sector=Industry">Industry</a>
-                   </li>
-                   <li>
-                        <a href="/solutions/projects?sector=Transportation">Transportation </a> 
-                   </li>
-                   <li>
-                        <a href="/solutions/projects?sector=Electricity">Electricity</a>
-                   </li>
-                </ul>
-              </details>
-            </li>
-          </ul>
-        </div>
-      </div>
+  <%- include('partials/navbar', {page: '/'}) %>
+
       <div class="container mx-auto">
       <div class="hero bg-base-200 min-h-32 rounded-lg p-10">
         <div class="hero-content text-center">
@@ -43,7 +17,7 @@
             <p class="py-6">
                 Browse our current collection of modern solutions to help fight Climate Change.
             </p>
-            <button class="btn btn-primary"><a href ="/solutions/projects" >Get Started Now</a></button>
+            <a class="btn btn-primary"href = "/solutions/projects" >Get Started Now</a>
           </div>
         </div>
       </div>

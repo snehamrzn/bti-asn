@@ -43,10 +43,14 @@
                 <p id ="quote"></p>
                 <em><p id = "author"></p></em>
                 <br>
-
+                 
+                <a class="btn btn-success btn-sm" href="/solutions/editProject/<%= project.id %>">Edit Project: <%= project.title %></a>
+                <br>
+                <br>
             
-                <a class="btn btn-primary btn-sm" href="#" onclick="history.back(); return false;">Return</a>
-
+                <a class="btn btn-primary btn-sm " href="#" onclick="history.back(); return false;">Return</a>
+                <br>
+                <br>
                 <script>
                     document.addEventListener("DOMContentLoaded", async()=>{
 
@@ -57,6 +61,7 @@
                              document.getElementById("author").textContent =`- ${data.author}`;
                     });
                 </script>
+
                 
             </div>
 

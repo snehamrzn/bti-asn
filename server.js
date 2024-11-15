@@ -85,17 +85,28 @@ const main = async() =>{
         }
 
     });
-     
-    app.post('/solutions/addProject', async(req,res) =>{
-       
-       try{
-            const newProjectData = req.body;
-            await projectData.addProject(newProjectData);
-            res.redirect("/solutions/projects");
-       }catch(error){
-        res.render("500", { message: `I'm sorry, but we have encountered the following error: ${error}` })
-       }
+    app.get('/solutions/addProject', async (req, res) => {
+        try {
+            const sectorData = await projectData.getAllSectors();
+            console.log("Sectors:", sectorData); // Log sector data for debugging
+            res.render("addProject", { sectors: sectorData });
+        } catch (err) {
+            console.error("Error in GET /solutions/addProject:", err); // Log error
+            res.render("500", { message: `I'm sorry, but we have encountered the following error: ${err}` });
+        }
     });
+    
+     
+    // app.post('/solutions/addProject', async(req,res) =>{
+       
+    //    try{
+    //         const newProjectData = req.body;
+    //         await projectData.addProject(newProjectData);
+    //         res.redirect("/solutions/projects");
+    //    }catch(error){
+    //     res.render("500", { message: `I'm sorry, but we have encountered the following error: ${error}` })
+    //    }
+    // });
 
     app.get('/solutions/editProject/:id', async(req,res) =>
     {

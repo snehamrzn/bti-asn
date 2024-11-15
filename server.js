@@ -93,7 +93,7 @@ const main = async() =>{
             await projectData.addProject(newProjectData);
             res.redirect("/solutions/projects");
        }catch(error){
-        res.render("500", { message: `I'm sorry, but we have encountered the following error: ${err}` })
+        res.render("500", { message: `I'm sorry, but we have encountered the following error: ${error}` })
        }
     });
 

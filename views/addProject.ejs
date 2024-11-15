@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>Projects</title>
+</head>
+
+<body class="min-h-screen">
+    <%- include('partials/navbar', {page: '/solutions/addProject' }) %>
+        <div class="container mx-auto">
+            <div class="hero bg-base-200 min-h-32 rounded-lg p-10">
+                <div class="hero-content text-center">
+                    <div class="max-w-md">
+                        <h1 class="text-5xl font-bold">Add Project</h1>
+                        <p class="py-6">
+                            Use the below form to add a new Project to the collection</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto">
+            <form method="post" action="/solutions/addProject">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-0">
+                    <!-- Title -->
+                    <div class="mb-6">
+                        <label class="label">
+                            <span class="label-text">Title</span>
+                        </label>
+                        <input type="text" name="title" placeholder="Enter project title" class="w-full rounded-md px-3 py-2"
+                            required />
+                    </div>
+
+                    <!-- Feature Image URL -->
+                    <div class="mb-6">
+                        <label class="label">
+                            <span class="label-text">Feature Image (URL)</span>
+                        </label>
+                        <input type="url" name="feature_img_url" placeholder="Enter feature image URL"
+                            class="w-full rounded-md px-3 py-2" required />
+                    </div>
+
+                    <!-- Sector Selection -->
+                    <div class="mb-6">
+                        <label class="label">
+                            <span class="label-text">Sector</span>
+                        </label>
+                        <select name="sector_id" class="w-full rounded-md px-3 py-2" required>
+                            <% sectors.forEach(sector=> { %>
+                                <option value="<%= sector.id %>">
+                                    <%= sector.sector_name %>
+                                </option>
+                                <% }) %>
+                        </select>
+                    </div>
+
+
+                    <!-- intro_short-->
+                    <div class="mb-6">
+                        <label class="label">
+                            <span class="label-text">Short Introduction</span>
+                        </label>
+                        <textarea name="intro_short" class="w-full rounded-md px-3 py-2 h-40"
+                            placeholder="Write a short introduction" required></textarea>
+                    </div>
+
+                    <!--summary_short-->
+                    <div class="mb-6">
+                        <label class="label">
+                            <span class="label-text">Short Summary</span>
+                        </label>
+                        <textarea name="summary_short" class="w-full rounded-md px-3 py-2 h-40"
+                            placeholder="Write a short summary" required></textarea>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="label">
+                            <span class="label-text">Impact</span>
+                        </label>
+                        <textarea name="impact" class="w-full rounded-md px-3 py-2 h-40" placeholder="impact"
+                            required></textarea>
+                    </div>
+
+                    <!-- Original Image URL -->
+                    <div class="mb-6">
+                        <label class="label">
+                            <span class="label-text">Original Image (URL)</span>
+                        </label>
+                        <input type="url" name="original_source_url" class = "w-full rounded-md px-3 py-2" required />
+                    </div>
+                </div>
+
+                <div class="mt -6 flex justify-end space-x-2">
+                    <button type="submit" class="btn btn-primary w-full btn-sm">Add Project</button>
+                </div>
+
+
+            </form>
+        </div>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css" />
+    <title><%= project.title %></title>
+</head>
+<body class="min-h-screen">
+  <%- include('partials/navbar', {page: ''}) %>
+      <div class="container mx-auto">
+      <div class="hero bg-base-200 min-h-32 rounded-lg p-10">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold">Edit Project</h1>
+            <p class="py-6">
+                <%= project.title %></p>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="container mx-auto">
+        <form method="post" action="/solutions/editProject">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-0">
+                <input type="hidden" name = "id" value ="<%= project.id %>"/>
+            
+             <div class="mb-6">
+                <label class="label">
+                    <span class="label-text">Title</span>
+                </label>
+                <input type="text" name="title"  value ="<%= project.title %>" class="w-full rounded-md px-3 py-2"  required />
+            </div>
+
+        
+            <div class="mb-6">
+                <label class="label">
+                    <span class="label-text">Feature Image (URL)</span>
+                </label>
+                <input type="url" name="feature_img_url" value ="<%= project.feature_img_url %>" class="w-full rounded-md px-3 py-2" required />
+            </div>
+
+          
+            <div class="mb-6">
+                <label class="label">
+                    <span class="label-text">Sector</span>
+                </label>
+                <select name="sector_id" class="w-full rounded-md px-3 py-2" required>
+                    <% sectors.forEach(sector=>{ %>
+                        <option <%= (project.sector_id == sector.id) ? "selected" : "" %> value="<%= sector.id %>">
+                        <%= sector.sector_name %>
+                        </option>
+                        <% }) %>
+                </select>
+            </div>
+
+
+          
+            <div class="mb-6">
+                <label class="label">
+                    <span class="label-text">Short Introduction</span>
+                </label>
+                <textarea name="intro_short" class="w-full rounded-md px-3 py-2 h-40 "  required><%= project.intro_short %></textarea>
+            </div>
+
+       
+            <div class="mb-6">
+                <label class="label">
+                    <span class="label-text">Short Summary</span>
+                </label>
+                <textarea name="summary_short" class="w-full rounded-md px-3 py-2 h-40 " required><%= project.summary_short %></textarea>
+            </div>
+
+            <div class="mb-6">
+                <label class="label">
+                    <span class="label-text">Impact</span>
+                </label>
+                <textarea name="impact" class="w-full rounded-md px-3 py-2 h-40 " placeholder="impact" required><%= project.impact %></textarea>
+            </div>
+
+         
+            <div class="mb-6">
+                <label class="label">
+                    <span class="label-text">Original Image (URL)</span>
+                </label>
+                <input type="url" name="original_source_url" value ="<%= project.original_source_url %>" class="w-full rounded-md px-3 py-2" required />
+            </div>
+        </div>
+            <div class= "mt -6 flex justify-end space-x-2">
+                <button type = "submit" class="btn btn-primary btn-sm">Update Project</button>
+                <a href="/solutions/deleteProject/<%= project.id %>"  class="btn btn-sm btn-error" >Delete Project</a>
+            </div> 
+          </form>
+      </div>
+</body>
+</html>

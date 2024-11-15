@@ -80,7 +80,7 @@ const main = async() =>{
             const sectorData = await projectData.getAllSectors(); 
             res.render("addProject", { sectors: sectorData }); 
             
-        } catch (err) {
+        } catch (err){
             res.render("500", { message: `I'm sorry, but we have encountered the following error: ${err}` });
         }
 
@@ -89,7 +89,7 @@ const main = async() =>{
     app.post('/solutions/addProject', async(req,res) =>{
        
        try{
-            const newProjectData =  req.body;
+            const newProjectData = req.body;
             await projectData.addProject(newProjectData);
             res.redirect("/solutions/projects");
        }catch(error){

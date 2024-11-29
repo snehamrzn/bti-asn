@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>Projects</title>
+</head>
+
+<body class="min-h-screen">
+    <%- include('partials/navbar', {page: '/solutions/addProject' }) %>
+        <div class="container mx-auto">
+            <div class="hero bg-base-200 min-h-32 rounded-lg p-10">
+                <div class="hero-content text-center">
+                    <div class="max-w-md">
+                        <h1 class="text-5xl font-bold">Register</h1>
+                        <p class="py-6">
+                            Please provide your credentials below</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container mx-auto">
+            <form action="/register" method="POST" class="space-y-4">
+                <div class="flex flex-col">
+                    <label for="userName" class="block text-sm font-bold text-white">User Name</label>
+                    <input type="text" id="userName" name="userName" placeholder="User Name" required
+                        class="input input-bordered w-full mt-1 p-2 " value="<%= userName %>">
+                </div>
+                <div class="flex flex-col">
+                    <label for="password" class="block text-sm font-bold text-white">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required
+                        class="input input-bordered w-full mt-1 p-2">
+                </div>
+                <div class="flex flex-col">
+                    <label for="password2" class="block text-sm font-bold text-white">Confirm
+                        Password</label>
+                    <input type="password" id="password2" name="password2" placeholder="Confirm Password" required
+                        class="input input-bordered w-full mt-1 p-2">
+                </div>
+                <div class="flex flex-col">
+                    <label for="email" class="block text-sm font-bold text-white">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Email Address" required
+                        class="input input-bordered w-full mt-1 p-2">
+                </div>
+                <div class="flex flex-col">
+                    <button type="submit" class="btn bg-green-500 max-w-[72px] text-white">Register</button>
+                </div>
+            </form>
+            <% if (errorMessage) { %>
+                <div class="alert alert-error">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>
+                        <%= errorMessage %>
+                    </span>
+                </div>
+                <% } %>
+                    <% if(successMessage) {%>
+                        <div class="alert">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                                viewBox="0 0 24
+                        24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9
+                        0 0118 0z" />
+                            </svg>
+                            <span>
+                                <%= successMessage %>
+                            </span>
+                        </div><br />
+                        <a href="/login" class="btn btn-success">
+                            Proceed to Log in
+                        </a>
+                        <% } %>
+
+        </div>
+</body>
+
+</html>

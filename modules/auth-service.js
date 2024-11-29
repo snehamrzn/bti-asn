@@ -67,7 +67,7 @@ function registerUser(userData) {
 function checkUser(userData) {
   return new Promise(async (resolve, reject) => {
     try {
-      const users = await User.find({ userName: userData.userName });
+      const users = await User.find({ userName: userData.userName }).exec();
       if (users.length === 0) {
         reject(`Unable to find user: ${userData.userName}`);
       }
